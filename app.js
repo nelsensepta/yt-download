@@ -40,13 +40,6 @@ app.get("/", function (req, res) {
 
 app.get("/download", async function (req, res) {
   try {
-    htmlDOM("./views/index.html", function (data) {
-      const { document } = new JSDOM(`${data}`).window;
-      document.body.querySelector(".fancy-spinner").style.display = "flex";
-
-      const html = document.documentElement.outerHTML;
-      LoadingFile(res, html);
-    });
     const youtubeLink = req.query.url;
     const info = await ytdl.getBasicInfo(youtubeLink);
     const title = info.player_response.videoDetails.title;
@@ -70,9 +63,7 @@ app.get("/mp3", async function (req, res) {
     const youtubeLink = req.query.url;
     const info = await ytdl.getBasicInfo(youtubeLink);
     const title = info.player_response.videoDetails.title;
-
     res.header("Content-Disposition", `attachment; filename="${title}.mp3"`);
-
     ytdl(youtubeLink, {
       format: "mp3",
       filter: "audioonly",
@@ -83,7 +74,6 @@ app.get("/mp3", async function (req, res) {
       const errorText = document.body.querySelector("span.error-text");
       errorText.textContent = `Sorry.. video url ${req.query.url} not found, please check your video url`;
       const html = document.documentElement.outerHTML;
-
       errorFile(res, html);
     });
   }
