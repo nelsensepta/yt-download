@@ -94,6 +94,4 @@ app.use((req, res) => {
   renderHTML(res, "./views/404.html");
 });
 
-app.listen(process.env.PORT || 3000, () =>
-  console.log("Running at localhost:3000")
-);
+app.listen(process.env.PORT || 3000, () => console.log("Running"));
