@@ -13,7 +13,6 @@ function clickedBtnDownload(e) {
 inputURL.addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     const url = inputURL.value;
-    console.log(url.length);
     downloadVideo(url);
   }
 });
@@ -23,7 +22,6 @@ function downloadVideo(url) {
     window.location.href = `${window.location.origin}/download?url=${url}`;
     return;
   }
-
   alert("Please insert your Video URL");
 }
 
@@ -32,7 +30,6 @@ function downloadAudio(url) {
     window.location.href = `${window.location.origin}/mp3?url=${url}`;
     return;
   }
-
   alert("Please insert your Video URL");
 }
 

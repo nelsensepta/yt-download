@@ -65,7 +65,6 @@ app.get("/mp3", async function (req, res) {
     const title = info.player_response.videoDetails.title;
     res.header("Content-Disposition", `attachment; filename="${title}.mp3"`);
     ytdl(youtubeLink, {
-      format: "mp3",
       filter: "audioonly",
     }).pipe(res);
   } catch (err) {
