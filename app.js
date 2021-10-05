@@ -4,6 +4,7 @@ const fs = require("fs");
 const ytdl = require("ytdl-core");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.static("public"));
