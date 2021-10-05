@@ -5,6 +5,9 @@ const ytdl = require("ytdl-core");
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
+app.use(cors());
+app.use(express.static("public"));
+
 function renderHTML(res, path) {
   return fs.readFile(path, function (err, data) {
     if (err) return err;
@@ -31,8 +34,6 @@ function LoadingFile(res, html) {
     renderHTML(res, "./views/loading.html");
   });
 }
-
-app.use(express.static("public"));
 
 app.get("/", function (req, res) {
   renderHTML(res, "./views/index.html");
@@ -65,6 +66,7 @@ app.get("/mp3", async function (req, res) {
     const title = info.player_response.videoDetails.title;
     res.header("Content-Disposition", `attachment; filename="${title}.mp3"`);
     ytdl(youtubeLink, {
+      format: "mp3",
       filter: "audioonly",
     }).pipe(res);
   } catch (err) {

@@ -10,6 +10,7 @@
   "author": "Kucir Nob",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "fluent-ffmpeg": "^2.1.2",
     "jsdom": "^17.0.0",
